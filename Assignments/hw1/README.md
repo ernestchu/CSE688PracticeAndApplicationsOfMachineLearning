@@ -6,7 +6,7 @@
 ```
 
 ### Instructions
-[Y2021 HW1.pdf]('Y2021 HW1.pdf')
+[Y2021 HW1.pdf](<Y2021 HW1.pdf>)
 
 ### Notebooks
 
