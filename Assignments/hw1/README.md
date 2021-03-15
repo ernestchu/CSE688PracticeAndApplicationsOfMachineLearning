@@ -11,3 +11,4 @@
 ### Notebooks
 
 1. [hw1-1.ipynb](src/hw1-1.ipynb)
+1. [hw1-2.ipynb](src/hw1-2.ipynb)
