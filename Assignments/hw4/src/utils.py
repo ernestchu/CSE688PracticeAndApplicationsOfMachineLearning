@@ -3,8 +3,8 @@ import tensorflow as tf
 
 def anomaly_detect_split(images, labels, normals=[1, 3, 5, 7]):
     '''
-    normal     = a: 50%, b: 50%
-    abnormal   = c: 50%, d: 50%
+    normal     = a: 50%, b: 50% (label = 0)
+    abnormal   = c: 50%, d: 50% (label = 1)
     training   = a
     validation = b + c
     testing    = b + d
@@ -28,10 +28,10 @@ def anomaly_detect_split(images, labels, normals=[1, 3, 5, 7]):
     test_labels          = np.zeros(len(test_normal_splitter))
     test_images          = normal_images[test_normal_splitter]
     
-    abnormal_shuffler     = np.random.permutation(len(abnormal_labels))
-    abnormal_val_splitter = abnormal_shuffler[:int(len(abnormal_labels)/2)]
-    val_labels            = np.concatenate((val_labels, np.ones(len(abnormal_val_splitter))))
-    val_images            = np.concatenate((val_images, abnormal_images[abnormal_val_splitter]))
+    abnormal_shuffler      = np.random.permutation(len(abnormal_labels))
+    abnormal_val_splitter  = abnormal_shuffler[:int(len(abnormal_labels)/2)]
+    val_labels             = np.concatenate((val_labels, np.ones(len(abnormal_val_splitter))))
+    val_images             = np.concatenate((val_images, abnormal_images[abnormal_val_splitter]))
     abnormal_test_splitter = abnormal_shuffler[int(len(abnormal_labels)/2):]
     test_labels            = np.concatenate((test_labels, np.ones(len(abnormal_test_splitter))))
     test_images            = np.concatenate((test_images, abnormal_images[abnormal_test_splitter]))
