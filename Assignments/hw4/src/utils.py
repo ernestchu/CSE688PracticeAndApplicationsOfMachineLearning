@@ -55,7 +55,7 @@ class AnomalyValidation(tf.keras.callbacks.Callback):
                 confidence = tf.math.reduce_max(tf.nn.softmax(self.model(image)), 1).numpy()
                 num_correct += ((confidence < self.ATH) == label.numpy()).sum()
             else:
-                num_correct += (tf.keras.losses.MSE(self.model(image), image).numpy().mean(axis=1) < self.ATH).sum()
+                num_correct += ((tf.keras.losses.MSE(self.model(image), image).numpy().mean(axis=1) > self.ATH) == label.numpy()).sum()
             num_total += label.shape[0]
         
         acc = num_correct/num_total
@@ -70,14 +70,14 @@ class AnomalyValidation(tf.keras.callbacks.Callback):
         if 'sparse_categorical_accuracy' in logs.keys():
             print(
                 f"\x1b[32m Train \x1b[0m "
-                f"Loss: {logs['loss']: .3f}, "
+                f"Loss: {logs['loss']: .6f}, "
                 f"Acc: {logs['sparse_categorical_accuracy']: .3f}",
                 end = '\t'
             )
         else:
             print(
                 f"\x1b[32m Train \x1b[0m "
-                f"MSE: {logs['loss']: .3f}, ",
+                f"MSE: {logs['loss']: .6f}, ",
                 end = '\t'
             )
         print(f'Anomaly detection accuracy:\x1b[31m {acc: .5f}\x1b[0m')
