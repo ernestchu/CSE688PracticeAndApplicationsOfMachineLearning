@@ -209,3 +209,4 @@ class snake_env():
 
     def close(self):
         pg.quit()
+
