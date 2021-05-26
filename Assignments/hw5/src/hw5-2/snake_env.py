@@ -11,9 +11,9 @@ SNAKE_BODY = 20
 
 
 def delay(second):
-#     for event in pg.event.get():
-#         if event.type == pg.QUIT:
-#             exit()
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
+            exit()
     time.sleep(second)
 
 
