@@ -22,6 +22,7 @@ parser.add_argument('--critic_lr', type=float, default=0.001)
 parser.add_argument('--save_weights', type=str, required=True)
 parser.add_argument('--load_weights', type=str, default="")
 parser.add_argument('--save_figure', type=str, required=True)
+parser.add_argument('--dist_move_reward', type=bool, default=False)
 
 args = parser.parse_args()
 
@@ -36,6 +37,9 @@ class Agent:
         
         if args.load_weights:
             self.actor.model.load_weights(args.load_weights)
+            
+        if args.dist_move_reward:
+            self.env.set_reward(move_reward='-dist')
         
         # initialize video system only
         self.env.reset()
