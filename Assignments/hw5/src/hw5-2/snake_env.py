@@ -149,7 +149,7 @@ class snake_env():
         # snake body length
         info = {'length': len(self.snake)}
 
-        delay(0)
+#         delay(0)
 
         return next_state, reward*1., done, info
 

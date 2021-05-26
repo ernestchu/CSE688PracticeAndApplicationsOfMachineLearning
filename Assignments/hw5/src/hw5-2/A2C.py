@@ -14,7 +14,7 @@ tf.keras.backend.set_floatx('float64')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--gamma', type=float, default=0.9)
-parser.add_argument('--log_interval', type=int, default=500)
+parser.add_argument('--log_interval', type=int, default=10000)
 parser.add_argument('--actor_lr', type=float, default=0.0005)
 parser.add_argument('--critic_lr', type=float, default=0.001)
 parser.add_argument('--save_weights', type=str, required=True)
@@ -33,7 +33,7 @@ class Agent:
         
         # initialize video system only
         self.env.reset()
-        self.env.render()
+#         self.env.render()
 
     def MC(self, rewards, dones, next_value):
         '''
@@ -58,7 +58,7 @@ class Agent:
             batch = np.append(batch, elem, axis=0)
         return batch
 
-    def train(self, max_updates=500, batch_size=64):
+    def train(self, max_updates=10000, batch_size=64):
         episode_rewards = []
         actor_loss  = 0
         critic_loss = 0
