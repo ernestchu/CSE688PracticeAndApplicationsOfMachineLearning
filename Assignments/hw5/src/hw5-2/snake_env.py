@@ -2,6 +2,7 @@ import numpy as np
 from collections import deque
 import math
 import time
+import sys
 
 import pygame as pg
 
@@ -13,7 +14,7 @@ SNAKE_BODY = 20
 def delay(second):
     for event in pg.event.get():
         if event.type == pg.QUIT:
-            exit()
+            sys.exit()
     time.sleep(second)
 
 
